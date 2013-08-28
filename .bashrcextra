@@ -1,0 +1,12 @@
+# Helpful bash functions
+
+# Enable the globstar operator so we can do cool things recursively
+shopt -s globstar
+
+# Recursively gets the linecount for files of a particular extension
+# Arg0 = directory (no trailing slashes)
+# Arg1 = file extension
+function lncount()
+{
+	wc -l $1/**/*.$2
+}
