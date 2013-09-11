@@ -1,6 +1,30 @@
+# Pebble Dev paths
+if [ -e ~/pebble-dev ]; then
+    # Assume all the paths exist
+    export PEBBLE_DEV_ROOT=~/pebble-dev
+    export PEBBLE_TOOLCHAIN=$PEBBLE_DEV_ROOT/arm-cs-tools/bin
+    export PEBBLE_ROOT=$PEBBLE_DEV_ROOT/PebbleSDK-1.12/Pebble
+    export PEBBLE_TOOLS=$PEBBLE_ROOT/tools
+    export PEBBLE_SDK=$PEBBLE_ROOT/sdk
+    export PEBBLE_SDK_TOOLS=$PEBBLE_SDK/tools
+    export PATH=$PEBBLE_TOOLS:$PEBBLE_SDK_TOOLS:$PEBBLE_TOOLCHAIN:$PATH
+fi
+
+# Android Dev paths
+#Mac paths
+macAndroidPath=~/android-sdk-mac_86/platform-tools
+if [[ "$OSTYPE" == "darwin12" &&  -e "$macAndroidPath" ]]; then
+    export ANDROID_TOOLS=$macAndroidPath
+    export PATH=$ANDROID_TOOLS:$PATH
+
+# TODO handle other Android SDKs
+#elif [[ condition1 && condition2 ]]
+fi
+
 # Helpful bash functions
 
 # Enable the globstar operator so we can do cool things recursively
+# TODO only do this if it's supported by the version of bash on the system
 shopt -s globstar
 
 # Recursively gets the linecount for files of a particular extension
@@ -8,5 +32,7 @@ shopt -s globstar
 # Arg1 = file extension
 function lncount()
 {
-	wc -l $1/**/*.$2
+    # TODO do this another way if globstar can't be set!
+    wc -l $1/**/*.$2
 }
+
