@@ -17,6 +17,12 @@ if [[ "$OSTYPE" == "darwin12" &&  -e "$macAndroidPath" ]]; then
     export ANDROID_TOOLS=$macAndroidPath
     export PATH=$ANDROID_TOOLS:$PATH
 
+# Gradle Path
+if [ -e ~/gradle-1.11 ]; then
+    export GRADLE_HOME=~/gradle-1.11
+    export PATH=$GRADLE_HOME/bin:$PATH
+fi
+
 # TODO handle other Android SDKs
 #elif [[ condition1 && condition2 ]]
 fi
