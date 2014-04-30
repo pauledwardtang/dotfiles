@@ -12,10 +12,12 @@ fi
 
 # Android Dev paths
 #Mac paths
-macAndroidPath=~/android-sdk-mac_86/platform-tools
-if [[ "$OSTYPE" == "darwin12" &&  -e "$macAndroidPath" ]]; then
-    export ANDROID_TOOLS=$macAndroidPath
+macAndroidPath=~/android-sdk-mac_86
+if [[ ("$OSTYPE" == "darwin12" || "$OSTYPE" == 'darwin13') && -e "$macAndroidPath" ]]; then
+    export ANDROID_HOME=$macAndroidPath
+    export ANDROID_TOOLS=$macAndroidPath/platform-tools
     export PATH=$ANDROID_TOOLS:$PATH
+fi
 
 # Gradle Path
 if [ -e ~/gradle-1.11 ]; then
@@ -25,7 +27,7 @@ fi
 
 # TODO handle other Android SDKs
 #elif [[ condition1 && condition2 ]]
-fi
+#fi
 
 # Helpful bash functions
 
